@@ -10,6 +10,12 @@ packer.startup({
     -- Packer管理自身
     use 'wbthomason/packer.nvim'
     ---- 插件列表 ----
+    ----  ----
+    ---- Color Themes ----
+    -- onedark
+    use 'navarasu/onedark.nvim'
+    -- tokyonight
+    use 'folke/tokyonight.nvim'
   end,
   config = {
     -- 并发数限制
