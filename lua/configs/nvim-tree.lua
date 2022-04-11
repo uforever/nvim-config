@@ -26,7 +26,7 @@ nvim_tree.setup({ -- BEGIN_DEFAULT_OPTS
   },
   view = {
       -- 宽度
-      width = 40,
+      width = 32,
       -- 也可以 'right'
       side = 'left',
       -- 隐藏根目录

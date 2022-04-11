@@ -16,6 +16,11 @@ packer.startup({
       "kyazdani42/nvim-tree.lua",
       requires = "kyazdani42/nvim-web-devicons",
     })
+    -- bufferline
+    use({
+      "akinsho/bufferline.nvim",
+      requires = { "kyazdani42/nvim-web-devicons", "moll/vim-bbye" },
+    })
 
     ---- Color Themes ----
     -- onedark

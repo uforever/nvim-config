@@ -94,4 +94,15 @@ pluginKeys.nvimTreeList = {
   { key = "p", action = "paste" },
   { key = "f", action = "system_open" },
 }
+
+-- bufferline
+-- 左右Tab切换
+map("n", "<Tab>", ":BufferLineCycleNext<CR>", opt)
+map("n", "<Leader>bh", ":BufferLineCyclePrev<CR>", opt)
+map("n", "<Leader>bl", ":BufferLineCycleNext<CR>", opt)
+-- "moll/vim-bbye" 关闭当前 buffer
+map("n", "<Leader>bj", ":Bdelete!<CR>", opt)
+-- 关闭其他标签页
+map("n", "<leader>bk", ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>", opt)
+
 return pluginKeys
