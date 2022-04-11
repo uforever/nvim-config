@@ -9,3 +9,4 @@ require("themes")
 -- 插件配置
 require("configs.nvim-tree")
 require("configs.bufferline")
+require("configs.lualine")

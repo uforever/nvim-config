@@ -21,6 +21,12 @@ packer.startup({
       "akinsho/bufferline.nvim",
       requires = { "kyazdani42/nvim-web-devicons", "moll/vim-bbye" },
     })
+    -- lualine
+    use({
+      "nvim-lualine/lualine.nvim",
+      requires = { "kyazdani42/nvim-web-devicons" },
+    })
+    use("arkav/lualine-lsp-progress")
 
     ---- Color Themes ----
     -- onedark
