@@ -1,6 +1,7 @@
 # nvim-config
 
 #### Description
+
 my neovim configuration
 
 #### Installation
@@ -8,6 +9,7 @@ my neovim configuration
 ```
 git clone https://gitee.com/uforever/nvim-config.git ~/.config/nvim
 ```
+
 Run `nvim` and wait for the plugins to be installed
 
 ```
@@ -16,5 +18,7 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 ```
 
 required software
+
 <https://github.com/BurntSushi/ripgrep>
+
 <https://github.com/sharkdp/fd>

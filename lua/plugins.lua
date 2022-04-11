@@ -32,6 +32,10 @@ packer.startup({
       "nvim-telescope/telescope.nvim",
       requires = { "nvim-lua/plenary.nvim" },
     })
+    -- dashboard-nvim
+    use("glepnir/dashboard-nvim")
+    -- project
+    use("ahmedkhalf/project.nvim")
 
     ---- Color Themes ----
     -- onedark
