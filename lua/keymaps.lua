@@ -67,3 +67,31 @@ map("v", "<", "<gv", opt)
 -- 上下移动选中文本
 map("v", "J", ":move '>+1<CR>gv-gv", opt)
 map("v", "K", ":move '<-2<CR>gv-gv", opt)
+
+-- 插件快捷键
+local pluginKeys = {}
+
+-- nvim-tree 文件树
+-- 打开/关闭tree
+map("n", "<F3>", ":NvimTreeToggle<CR>", opt)
+-- 列表快捷键
+pluginKeys.nvimTreeList = {
+  -- 打开文件或文件夹
+  { key = {"<CR>", "<2-LeftMouse>"}, action = "edit" },
+  -- 分屏打开文件
+  { key = "l", action = "vsplit" },
+  -- { key = "", action = "split" },
+  -- 显示隐藏文件
+  { key = "i", action = "toggle_ignored" }, -- Ignore (node_modules)
+  { key = ".", action = "toggle_dotfiles" }, -- Hide (dotfiles)
+  -- 文件操作
+  { key = "<F5>", action = "refresh" },
+  { key = "o", action = "create" },
+  { key = "d", action = "remove" },
+  { key = "s", action = "rename" },
+  { key = "x", action = "cut" },
+  { key = "y", action = "copy" },
+  { key = "p", action = "paste" },
+  { key = "f", action = "system_open" },
+}
+return pluginKeys

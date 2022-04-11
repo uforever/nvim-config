@@ -6,3 +6,5 @@ require("keymaps")
 require("plugins")
 -- Color Themes
 require("themes")
+-- 插件配置
+require("configs.nvim-tree")
