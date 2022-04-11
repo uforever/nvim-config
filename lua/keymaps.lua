@@ -98,11 +98,31 @@ pluginKeys.nvimTreeList = {
 -- bufferline
 -- 左右Tab切换
 map("n", "<Tab>", ":BufferLineCycleNext<CR>", opt)
-map("n", "<Leader>bh", ":BufferLineCyclePrev<CR>", opt)
-map("n", "<Leader>bl", ":BufferLineCycleNext<CR>", opt)
+map("n", "<Leader>fh", ":BufferLineCyclePrev<CR>", opt)
+map("n", "<Leader>fl", ":BufferLineCycleNext<CR>", opt)
 -- "moll/vim-bbye" 关闭当前 buffer
-map("n", "<Leader>bj", ":Bdelete!<CR>", opt)
+map("n", "<Leader>fk", ":Bdelete!<CR>", opt)
 -- 关闭其他标签页
-map("n", "<leader>bk", ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>", opt)
+map("n", "<leader>fj", ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>", opt)
+
+-- Telescope
+map("n", "<C-p>", ":Telescope find_files<CR>", opt)
+map("n", "<C-f>", ":Telescope live_grep<CR>", opt)
+-- 插入模式快捷键
+pluginKeys.telescopeList = {
+  i = {
+    -- 上下移动
+    -- ["<Down>"] = "move_selection_next",
+    -- ["<Up>"] = "move_selection_previous",
+    -- 历史记录
+    ["<C-h>"] = "cycle_history_next",
+    ["<C-l>"] = "cycle_history_prev",
+    -- 关闭窗口
+    ["<C-c>"] = "close",
+    -- 预览窗口上下滚动
+    ["<C-k>"] = "preview_scrolling_up",
+    ["<C-j>"] = "preview_scrolling_down",
+  },
+}
 
 return pluginKeys

@@ -27,6 +27,11 @@ packer.startup({
       requires = { "kyazdani42/nvim-web-devicons" },
     })
     use("arkav/lualine-lsp-progress")
+    -- telescope
+    use({
+      "nvim-telescope/telescope.nvim",
+      requires = { "nvim-lua/plenary.nvim" },
+    })
 
     ---- Color Themes ----
     -- onedark
