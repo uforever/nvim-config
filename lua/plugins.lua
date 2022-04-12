@@ -36,6 +36,11 @@ packer.startup({
     use("glepnir/dashboard-nvim")
     -- project
     use("ahmedkhalf/project.nvim")
+    -- treesitter
+    use({
+      "nvim-treesitter/nvim-treesitter",
+      run = ":TSUpdate",
+    })
 
     ---- Color Themes ----
     -- onedark
