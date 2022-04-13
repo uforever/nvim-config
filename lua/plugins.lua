@@ -42,6 +42,10 @@ packer.startup({
       run = ":TSUpdate",
     })
 
+    --------------------- LSP --------------------
+    -- Lspconfig
+    use({ "neovim/nvim-lspconfig", "williamboman/nvim-lsp-installer" })
+
     ---- Color Themes ----
     -- onedark
     use 'navarasu/onedark.nvim'

@@ -14,3 +14,5 @@ require("configs.telescope")
 require("configs.dashboard")
 require("configs.project")
 require("configs.nvim-treesitter")
+-- 内置LSP
+require("lsp.setup")

@@ -53,7 +53,7 @@ map("n", "<A-j>", ":res -2<CR>", opt)
 map("n", "<A-k>", ":res +2<CR>", opt)
 map("n", "<A-l>", ":vert res +2<CR>", opt)
 -- Terminal相关
-map("n", "<leader>'", ":sp | terminal<CR>", opt)
+map("n", "<Leader>'", ":sp | terminal<CR>", opt)
 map("t", "jk", [[ <C-\><C-n> ]],opt)
 map("t", "<Leader>wh", [[ <C-\><C-n><C-w>h ]], opt)
 map("t", "<Leader>wj", [[ <C-\><C-n><C-w>j ]], opt)
@@ -75,8 +75,34 @@ local pluginKeys = {}
 -- map("n", "<Leader>zc", ":foldclose<CR>", opt)
 -- map("n", "<Leader>zo", ":foldopen<CR>", opt)
 
+-- lsp 回调函数快捷键设置
+pluginKeys.mapLSP = function(mapbuf)
+  -- rename
+  mapbuf("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opt)
+  -- code action
+  mapbuf("n", "<Leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
+  -- go xx
+  mapbuf("n", "<Leader>gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
+  mapbuf("n", "<Leader>gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
+  mapbuf("n", "<Leader>gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
+  mapbuf("n", "<Leader>gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
+  mapbuf("n", "<Leader>gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
+  -- diagnostic
+  mapbuf("n", "<Leader>gp", "<cmd>lua vim.diagnostic.open_float()<CR>", opt)
+  mapbuf("n", "<Leader>gk", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opt)
+  mapbuf("n", "<Leader>gj", "<cmd>lua vim.diagnostic.goto_next()<CR>", opt)
+  mapbuf("n", "<Leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opt)
+  -- 没用到
+  -- mapbuf('n', '<Leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
+  -- mapbuf("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opt)
+  -- mapbuf('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opt)
+  -- mapbuf('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opt)
+  -- mapbuf('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opt)
+  -- mapbuf('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
+end
+
 -- 格式化缩进
-map('n', '<leader>fm', 'gg=G<C-o>', opt)
+map('n', '<Leader>fm', 'gg=G<C-o>', opt)
 
 -- nvim-tree 文件树
 -- 打开/关闭tree
@@ -110,11 +136,12 @@ map("n", "<Leader>fl", ":BufferLineCycleNext<CR>", opt)
 -- "moll/vim-bbye" 关闭当前 buffer
 map("n", "<Leader>fk", ":Bdelete!<CR>", opt)
 -- 关闭其他标签页
-map("n", "<leader>fj", ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>", opt)
+map("n", "<Leader>fj", ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>", opt)
 
 -- Telescope
 map("n", "<C-p>", ":Telescope find_files<CR>", opt)
 map("n", "<C-f>", ":Telescope live_grep<CR>", opt)
+
 -- 插入模式快捷键
 pluginKeys.telescopeList = {
   i = {

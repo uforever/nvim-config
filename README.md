@@ -17,8 +17,14 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 
-需要的依赖
+telescope需要的依赖
 
 <https://github.com/BurntSushi/ripgrep>
 
 <https://github.com/sharkdp/fd>
+
+treesitter lsp 需要的依赖
+
+```
+nodejs npm unzip
+```
