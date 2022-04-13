@@ -12,6 +12,7 @@
   <Leader>aa           窗口平均分布(*)
   <Alt - h/j/k/l>      调整窗口尺寸
   <C-j>/<C-k>          上下移动多行
+  <C-s>                保存文件
   <Leader>'            调出终端(2)
 
 -- plugins
@@ -93,6 +94,7 @@ map("i", "<C-l>", "<ESC>A", opt)
 -- normal模式
 -- 针对60%键盘配置
 map("n", "<Esc>", "~", opt)
+map("n", "<C-s>", ":w<CR>", opt)
 map("n", "<Leader>sj", ":sp<CR>", opt)
 map("n", "<Leader>sk", ":set nosb | sp | set sb<CR>", opt)
 map("n", "<Leader>sl", ":vs<CR>", opt)
@@ -213,8 +215,8 @@ pluginKeys.mapLSP = function(mapbuf)
   mapbuf("n", "<Leader>gh", "<cmd>Lspsaga hover_doc<CR>", opt)
   mapbuf("n", "<Leader>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", opt)
   mapbuf("n", "<Leader>ep", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
-  mapbuf("n", "<Leader>ek", "<cmd>Lspsaga diagnostic_jump_next<CR>", opt)
-  mapbuf("n", "<Leader>ej", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opt)
+  mapbuf("n", "<Leader>ej", "<cmd>Lspsaga diagnostic_jump_next<CR>", opt)
+  mapbuf("n", "<Leader>ek", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opt)
 end
 
 map('n', '<Leader>.', 'gg=G<C-o>', opt)
