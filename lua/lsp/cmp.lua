@@ -40,7 +40,7 @@ cmp.setup({
   -- 快捷键
   mapping = require("keymaps").cmp(cmp),
   -- 使用lspkind-nvim显示类型图标
-  -- formatting = require("lsp.ui").formatting,
+  Formatting = require("lsp.ui").formatting,
 })
 
 -- Use buffer source for `/`.

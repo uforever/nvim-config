@@ -41,6 +41,8 @@ packer.startup({
       "nvim-treesitter/nvim-treesitter",
       run = ":TSUpdate",
     })
+    -- indent-blankline
+    use("lukas-reineke/indent-blankline.nvim")
 
     ---- LSP ----
     -- Lspconfig
@@ -58,6 +60,9 @@ packer.startup({
     use("hrsh7th/cmp-nvim-lsp-signature-help") -- { name = 'nvim_lsp_signature_help' }
     -- 常见编程语言代码段
     use("rafamadriz/friendly-snippets")
+    -- UI 增强
+    use("onsails/lspkind-nvim")
+    use("tami5/lspsaga.nvim")
 
     ---- Color Themes ----
     -- onedark
