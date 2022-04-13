@@ -1,6 +1,6 @@
 local status, bufferline = pcall(require, "bufferline")
 if not status then
-  vim.notify("bufferline not found")
+  vim.notify("没有找到 bufferline")
   return
 end
 -- bfferline 配置
@@ -27,7 +27,7 @@ bufferline.setup({
     diagnostics_indicator = function(count, level, diagnostics_dict, context)
       local s = " "
       for e, n in pairs(diagnostics_dict) do
-        local sym = e == "error" and " " or (e == "warning" and " " or "")
+        local sym = e == "error" and "  " or (e == "warning" and "  " or "  ")
         s = s .. n .. sym
       end
       return s
