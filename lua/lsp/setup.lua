@@ -6,6 +6,7 @@ local lsp_installer = require("nvim-lsp-installer")
 -- https://github.com/williamboman/nvim-lsp-installer#available-lsps
 local servers = {
   sumneko_lua = require("lsp.langs.lua"),
+  gopls = require("lsp.langs.go"),
   -- bashls = require("lsp.langs.bash"),
   -- jsonls = require("lsp.langs.json"),
   -- tsserver = require("lsp.langs.ts"),
