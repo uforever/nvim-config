@@ -63,6 +63,8 @@ packer.startup({
     -- UI 增强
     use("onsails/lspkind-nvim")
     use("tami5/lspsaga.nvim")
+    -- 代码格式化
+    use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
 
     ---- Color Themes ----
     -- onedark

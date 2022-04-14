@@ -1,6 +1,6 @@
 -- 半透明
-vim.g.tokyonight_transparent = true
-vim.g.tokyonight_transparent_sidebar = true
+vim.g.tokyonight_transparent = false
+vim.g.tokyonight_transparent_sidebar = false
 
 local colorscheme = "tokyonight"
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)

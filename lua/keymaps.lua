@@ -1,7 +1,7 @@
 --[[
 ---- insert mode ----
   jk                   退出insert模式
-  <C-h>/<C-l>          光标移动至行首/行尾
+  <C-a>/<C-e>          光标移动至行首/行尾
 
 ---- normal mode ----
   <Esc>                改变大小写
@@ -24,6 +24,7 @@
   <Leader>gu           跳转引用
   <Leader>gd           跳转定义
   <Leader>gh           跳转文档
+  <Leader>ga           提示动作
 
   <Leader>ep           打印错误详情
   <Leader>ej           跳转下一处错误
@@ -60,7 +61,7 @@
 
 -- complete
   <Ctrl - o/c>         打开/关闭自动补全
-  <Ctrl - j/k>         上下滚动预览窗
+  <Ctrl - h/l>         上下滚动预览窗
   <Tab><S-Tab>         snippets跳转
 
 ---- visual mode ----
@@ -88,13 +89,15 @@ local map = vim.api.nvim_set_keymap
 
 -- insert模式
 map("i", "jk", "<Esc>", opt)
-map("i", "<C-h>", "<ESC>I", opt)
-map("i", "<C-l>", "<ESC>A", opt)
+map("i", "<C-a>", "<ESC>I", opt)
+map("i", "<C-e>", "<ESC>A", opt)
 
 -- normal模式
 -- 针对60%键盘配置
 map("n", "<Esc>", "~", opt)
+
 map("n", "<C-s>", ":w<CR>", opt)
+
 map("n", "<Leader>sj", ":sp<CR>", opt)
 map("n", "<Leader>sk", ":set nosb | sp | set sb<CR>", opt)
 map("n", "<Leader>sl", ":vs<CR>", opt)
@@ -159,16 +162,16 @@ pluginKeys.cmp = function(cmp)
       c = cmp.mapping.close()
     }),
     -- 上一个
-    -- ["<C-k>"] = cmp.mapping.select_prev_item(),
+    ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), {"i", "c"}),
     -- 下一个
-    -- ["<C-j>"] = cmp.mapping.select_next_item(),
+    ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), {"i", "c"}),
     -- 确认
     ["<CR>"] = cmp.mapping.confirm({
       select = true,
       behavior = cmp.ConfirmBehavior.Replace
     }),
-    ["<C-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), {"i", "c"}),
-    ["<C-j>"] = cmp.mapping(cmp.mapping.scroll_docs(4), {"i", "c"}),
+    ["<C-h>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), {"i", "c"}),
+    ["<C-l>"] = cmp.mapping(cmp.mapping.scroll_docs(4), {"i", "c"}),
 
     --[[ snippets 跳转
     ["<C-l>"] = cmp.mapping(function(_)
@@ -213,6 +216,7 @@ pluginKeys.mapLSP = function(mapbuf)
   mapbuf("n", "<Leader>gu", "<cmd>Lspsaga lsp_finder<CR>", opt)
   mapbuf("n", "<Leader>gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
   mapbuf("n", "<Leader>gh", "<cmd>Lspsaga hover_doc<CR>", opt)
+  mapbuf("n", "<leader>ga", "<cmd>Lspsaga code_action<CR>", opt)
   mapbuf("n", "<Leader>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", opt)
   mapbuf("n", "<Leader>ep", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
   mapbuf("n", "<Leader>ej", "<cmd>Lspsaga diagnostic_jump_next<CR>", opt)

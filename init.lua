@@ -1,5 +1,5 @@
 -- 基础设置
-require('basic')
+require("basic")
 -- 键盘映射
 require("keymaps")
 -- Packer插件管理
@@ -19,3 +19,4 @@ require("configs.indent-blankline")
 require("lsp.setup")
 require("lsp.cmp")
 require("lsp.ui")
+require("lsp.null-ls")
