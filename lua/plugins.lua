@@ -65,6 +65,8 @@ packer.startup({
     use("tami5/lspsaga.nvim")
     -- 代码格式化
     use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
+    -- copilot.vim
+    use({ "github/copilot.vim" })
 
     ---- Color Themes ----
     -- onedark

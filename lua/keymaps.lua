@@ -3,6 +3,15 @@
   jk                   退出insert模式
   <C-a>/<C-e>          光标移动至行首/行尾
 
+-- plugins
+  <Ctrl - o/c>         打开/关闭自动补全
+  <Ctrl - h/l>         上下滚动预览窗
+  <Tab><S-Tab>         snippets跳转
+
+  <C-f>                接受补全
+  <C-b>                隐藏补全
+  <Alt - [/]>          切换补全
+
 ---- normal mode ----
   <Esc>                改变大小写
   <Leader>s + h/j/k/l  分屏
@@ -33,6 +42,7 @@
   <Leader>.            自动调整缩进(2)
   <Leader>fm           格式化代码(*)
   <F3>                 打开文件树
+  <Leader>cp           提示代码面板
 
 -- file tree
   i/.                  显示ignore/隐藏文件
@@ -58,11 +68,6 @@
   <Ctrl - j/k>         上下滚动预览窗
   <Ctrl - h/l>         搜索历史记录
   <Ctrl - c/d>         关闭窗口
-
--- complete
-  <Ctrl - o/c>         打开/关闭自动补全
-  <Ctrl - h/l>         上下滚动预览窗
-  <Tab><S-Tab>         snippets跳转
 
 ---- visual mode ----
   J/K                  上下移动选中的文本
@@ -143,6 +148,16 @@ local pluginKeys = {}
 -- map("n", "<Leader>zc", ":foldclose<CR>", opt)
 -- map("n", "<Leader>zo", ":foldopen<CR>", opt)
 
+-- Copilot
+map("i", "<C-f>", [[ copilot#Accept("\<CR>") ]], { silent = true, script = true, expr = true })
+map('i', '<C-b>', '<Plug>(copilot-dismiss)', { noremap = false })
+map('i', '<A-]>', '<Plug>(copilot-next)', { noremap = false })
+map('i', '<A-[>', '<Plug>(copilot-previous)', { noremap = false })
+-- map('n', '<Leader>cs', ':Copilot setup<CR>', opt)
+-- map('n', '<Leader>ce', ':Copilot enable<CR>', opt)
+-- map('n', '<Leader>cd', ':Copilot disable<CR>', opt)
+map('n', '<Leader>cp', ':Copilot panel<CR>', opt)
+
 -- nvim-cmp 自动补全
 pluginKeys.cmp = function(cmp)
   local feedkey = function(key, mode)
@@ -173,13 +188,15 @@ pluginKeys.cmp = function(cmp)
     ["<C-h>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), {"i", "c"}),
     ["<C-l>"] = cmp.mapping(cmp.mapping.scroll_docs(4), {"i", "c"}),
 
-    --[[ snippets 跳转
-    ["<C-l>"] = cmp.mapping(function(_)
+    -- snippets 跳转
+    --[[
+    ["<C-j>"] = cmp.mapping(function(_)
       if vim.fn["vsnip#available"](1) == 1 then
         feedkey("<Plug>(vsnip-expand-or-jump)", "")
       end
     end, { "i", "s" }),
-    ["<C-h>"] = cmp.mapping(function()
+
+    ["<C-k>"] = cmp.mapping(function()
       if vim.fn["vsnip#jumpable"](-1) == 1 then
         feedkey("<Plug>(vsnip-jump-prev)", "")
       end

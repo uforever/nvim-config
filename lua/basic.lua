@@ -77,6 +77,8 @@ vim.o.showtabline = 2
 vim.o.showmode = false
 -- 配置剪切板
 vim.opt.clipboard = "unnamedplus"
+-- Copilot
+vim.g.copilot_no_tab_map = true
 
 -- 撤销记录
 -- vim.opt.undofile = true
