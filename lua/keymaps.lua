@@ -1,5 +1,6 @@
 --[[
 ---- insert mode ----
+  <Esc>                映射到`
   jk                   退出insert模式
   <C-a>/<C-e>          光标移动至行首/行尾
 
@@ -93,6 +94,7 @@ local map = vim.api.nvim_set_keymap
 -- command_mode = "c"
 
 -- insert模式
+map("i", "<Esc>", "`", opt)
 map("i", "jk", "<Esc>", opt)
 map("i", "<C-a>", "<ESC>I", opt)
 map("i", "<C-e>", "<ESC>A", opt)

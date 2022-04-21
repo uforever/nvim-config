@@ -23,8 +23,17 @@ telescope需要的依赖
 
 <https://github.com/sharkdp/fd>
 
-treesitter lsp 需要的依赖
+需要的依赖
 
 ```
-nodejs npm unzip
+nodejs npm unzip golang-go
+```
+
+golang
+```
+go env -w GO111MODULE=on
+go env -w GOPROXY=https://goproxy.cn,direct
+nvim
+go env -w GO111MODULE=""
+go env -w GOPROXY="https://proxy.golang.org,direct"
 ```
