@@ -79,6 +79,7 @@ vim.o.showmode = false
 vim.opt.clipboard = "unnamedplus"
 -- Copilot
 vim.g.copilot_no_tab_map = true
+vim.g.copilot_ignore_node_version = true
 
 -- 撤销记录
 -- vim.opt.undofile = true
