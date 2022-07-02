@@ -79,8 +79,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 local opt = {
-  noremap = true,
-  silent = true,
+	noremap = true,
+	silent = true,
 }
 
 -- 本地变量
@@ -129,7 +129,7 @@ map("n", "<A-k>", ":res +2<CR>", opt)
 map("n", "<A-l>", ":vert res +2<CR>", opt)
 -- Terminal相关
 map("n", "<Leader>'", ":sp | terminal<CR>", opt)
-map("t", "jk", [[ <C-\><C-n> ]],opt)
+map("t", "jk", [[ <C-\><C-n> ]], opt)
 map("t", "<Leader>wh", [[ <C-\><C-n><C-w>h ]], opt)
 map("t", "<Leader>wj", [[ <C-\><C-n><C-w>j ]], opt)
 map("t", "<Leader>wk", [[ <C-\><C-n><C-w>k ]], opt)
@@ -152,46 +152,46 @@ local pluginKeys = {}
 
 -- Copilot
 map("i", "<C-f>", [[ copilot#Accept("\<CR>") ]], { silent = true, script = true, expr = true })
-map('i', '<C-b>', '<Plug>(copilot-dismiss)', { noremap = false })
-map('i', '<A-]>', '<Plug>(copilot-next)', { noremap = false })
-map('i', '<A-[>', '<Plug>(copilot-previous)', { noremap = false })
+map("i", "<C-b>", "<Plug>(copilot-dismiss)", { noremap = false })
+map("i", "<A-]>", "<Plug>(copilot-next)", { noremap = false })
+map("i", "<A-[>", "<Plug>(copilot-previous)", { noremap = false })
 -- map('n', '<Leader>cs', ':Copilot setup<CR>', opt)
 -- map('n', '<Leader>ce', ':Copilot enable<CR>', opt)
 -- map('n', '<Leader>cd', ':Copilot disable<CR>', opt)
-map('n', '<Leader>cp', ':Copilot panel<CR>', opt)
+map("n", "<Leader>cp", ":Copilot panel<CR>", opt)
 
 -- nvim-cmp 自动补全
 pluginKeys.cmp = function(cmp)
-  local feedkey = function(key, mode)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-  end
-  local has_words_before = function()
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-  end
+	local feedkey = function(key, mode)
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+	end
+	local has_words_before = function()
+		local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+		return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+	end
 
-  return {
-    -- 出现补全
-    ["<C-o>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
-    -- 取消
-    ["<C-c>"] = cmp.mapping({
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close()
-    }),
-    -- 上一个
-    ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), {"i", "c"}),
-    -- 下一个
-    ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), {"i", "c"}),
-    -- 确认
-    ["<CR>"] = cmp.mapping.confirm({
-      select = true,
-      behavior = cmp.ConfirmBehavior.Replace
-    }),
-    ["<C-h>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), {"i", "c"}),
-    ["<C-l>"] = cmp.mapping(cmp.mapping.scroll_docs(4), {"i", "c"}),
+	return {
+		-- 出现补全
+		["<C-o>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+		-- 取消
+		["<C-c>"] = cmp.mapping({
+			i = cmp.mapping.abort(),
+			c = cmp.mapping.close(),
+		}),
+		-- 上一个
+		["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+		-- 下一个
+		["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+		-- 确认
+		["<CR>"] = cmp.mapping.confirm({
+			select = true,
+			behavior = cmp.ConfirmBehavior.Replace,
+		}),
+		["<C-h>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+		["<C-l>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
 
-    -- snippets 跳转
-    --[[
+		-- snippets 跳转
+		--[[
     ["<C-j>"] = cmp.mapping(function(_)
       if vim.fn["vsnip#available"](1) == 1 then
         feedkey("<Plug>(vsnip-expand-or-jump)", "")
@@ -205,60 +205,60 @@ pluginKeys.cmp = function(cmp)
     end, { "i", "s" }),
     --]]
 
-    -- super Tab
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif vim.fn["vsnip#available"](1) == 1 then
-        feedkey("<Plug>(vsnip-expand-or-jump)", "")
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-      end
-    end, { "i", "s" }),
+		-- super Tab
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif vim.fn["vsnip#available"](1) == 1 then
+				feedkey("<Plug>(vsnip-expand-or-jump)", "")
+			elseif has_words_before() then
+				cmp.complete()
+			else
+				fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+			end
+		end, { "i", "s" }),
 
-    ["<S-Tab>"] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-        feedkey("<Plug>(vsnip-jump-prev)", "")
-      end
-    end, { "i", "s" }),
-  }
+		["<S-Tab>"] = cmp.mapping(function()
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+				feedkey("<Plug>(vsnip-jump-prev)", "")
+			end
+		end, { "i", "s" }),
+	}
 end
 
 -- lsp 回调函数快捷键设置
 pluginKeys.mapLSP = function(mapbuf)
-  mapbuf("n", "<Leader>rn", "<cmd>Lspsaga rename<CR>", opt)
-  mapbuf("n", "<Leader>go", "<cmd>Lspsaga preview_definition<CR>", opt)
-  mapbuf("n", "<Leader>gu", "<cmd>Lspsaga lsp_finder<CR>", opt)
-  mapbuf("n", "<Leader>gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
-  mapbuf("n", "<Leader>gh", "<cmd>Lspsaga hover_doc<CR>", opt)
-  mapbuf("n", "<leader>ga", "<cmd>Lspsaga code_action<CR>", opt)
-  mapbuf("n", "<Leader>fm", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opt)
-  mapbuf("n", "<Leader>ep", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
-  mapbuf("n", "<Leader>ej", "<cmd>Lspsaga diagnostic_jump_next<CR>", opt)
-  mapbuf("n", "<Leader>ek", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opt)
+	mapbuf("n", "<Leader>rn", "<cmd>Lspsaga rename<CR>", opt)
+	mapbuf("n", "<Leader>go", "<cmd>Lspsaga preview_definition<CR>", opt)
+	mapbuf("n", "<Leader>gu", "<cmd>Lspsaga lsp_finder<CR>", opt)
+	mapbuf("n", "<Leader>gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
+	mapbuf("n", "<Leader>gh", "<cmd>Lspsaga hover_doc<CR>", opt)
+	mapbuf("n", "<leader>ga", "<cmd>Lspsaga code_action<CR>", opt)
+	mapbuf("n", "<Leader>fm", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opt)
+	mapbuf("n", "<Leader>ep", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
+	mapbuf("n", "<Leader>ej", "<cmd>Lspsaga diagnostic_jump_next<CR>", opt)
+	mapbuf("n", "<Leader>ek", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opt)
 end
 
-map('n', '<Leader>.', 'gg=G<C-o>', opt)
+map("n", "<Leader>.", "gg=G<C-o>", opt)
 map("n", "<F3>", ":NvimTreeToggle<CR>", opt)
 
 -- 列表快捷键
 pluginKeys.nvimTreeList = {
-  { key = {"<CR>", "<2-LeftMouse>"}, action = "edit" },
-  { key = "l", action = "vsplit" },
-  { key = "i", action = "toggle_ignored" }, -- Ignore (node_modules)
-  { key = ".", action = "toggle_dotfiles" }, -- Hide (dotfiles)
-  { key = "<F5>", action = "refresh" },
-  { key = "o", action = "create" },
-  { key = "d", action = "remove" },
-  { key = "s", action = "rename" },
-  { key = "x", action = "cut" },
-  { key = "y", action = "copy" },
-  { key = "p", action = "paste" },
-  { key = "f", action = "system_open" },
+	{ key = { "<CR>", "<2-LeftMouse>" }, action = "edit" },
+	{ key = "l", action = "vsplit" },
+	{ key = "i", action = "toggle_ignored" }, -- Ignore (node_modules)
+	{ key = ".", action = "toggle_dotfiles" }, -- Hide (dotfiles)
+	{ key = "<F5>", action = "refresh" },
+	{ key = "o", action = "create" },
+	{ key = "d", action = "remove" },
+	{ key = "s", action = "rename" },
+	{ key = "x", action = "cut" },
+	{ key = "y", action = "copy" },
+	{ key = "p", action = "paste" },
+	{ key = "f", action = "system_open" },
 }
 
 -- 左右Tab切换
@@ -276,20 +276,20 @@ map("n", "<C-f>", ":Telescope live_grep<CR>", opt)
 
 -- 插入模式快捷键
 pluginKeys.telescopeList = {
-  i = {
-    -- 上下移动
-    -- ["<Down>"] = "move_selection_next",
-    -- ["<Up>"] = "move_selection_previous",
-    -- 历史记录
-    ["<C-h>"] = "cycle_history_next",
-    ["<C-l>"] = "cycle_history_prev",
-    -- 关闭窗口
-    ["<C-c>"] = "close",
-    ["<C-d>"] = "close",
-    -- 预览窗口上下滚动
-    ["<C-k>"] = "preview_scrolling_up",
-    ["<C-j>"] = "preview_scrolling_down",
-  },
+	i = {
+		-- 上下移动
+		-- ["<Down>"] = "move_selection_next",
+		-- ["<Up>"] = "move_selection_previous",
+		-- 历史记录
+		["<C-h>"] = "cycle_history_next",
+		["<C-l>"] = "cycle_history_prev",
+		-- 关闭窗口
+		["<C-c>"] = "close",
+		["<C-d>"] = "close",
+		-- 预览窗口上下滚动
+		["<C-k>"] = "preview_scrolling_up",
+		["<C-j>"] = "preview_scrolling_down",
+	},
 }
 
 return pluginKeys
